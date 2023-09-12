@@ -1,3 +1,7 @@
+# [mfwong]
+models/
+dreams/
+
 # Swift Package
 .DS_Store
 /.build

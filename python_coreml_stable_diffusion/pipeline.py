@@ -29,6 +29,8 @@ logger.setLevel(logging.INFO)
 import numpy as np
 import os
 
+import random
+
 from python_coreml_stable_diffusion.coreml_model import (
     CoreMLModel,
     _load_mlpackage,
@@ -523,7 +525,8 @@ def get_coreml_pipe(pytorch_pipe,
 def get_image_path(args, **override_kwargs):
     """ mkdir output folder and encode metadata in the filename
     """
-    out_folder = os.path.join(args.o, "_".join(args.prompt.replace("/", "_").rsplit(" ")))
+    # out_folder = os.path.join(args.o, "_".join(args.prompt.replace("/", "_").rsplit(" ")))
+    out_folder = args.o
     os.makedirs(out_folder, exist_ok=True)
 
     out_fname = f"randomSeed_{override_kwargs.get('seed', None) or args.seed}"
@@ -603,7 +606,7 @@ if __name__ == "__main__":
     parser.add_argument("-o", required=True)
     parser.add_argument("--seed",
                         "-s",
-                        default=93,
+                        default=random.randint(0, 4294967295),  # [mfwong] actually randomize seed; range [0, 2^32-1]
                         type=int,
                         help="Random seed to be able to reproduce results")
     parser.add_argument(
