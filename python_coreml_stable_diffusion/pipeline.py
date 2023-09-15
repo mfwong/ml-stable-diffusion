@@ -529,9 +529,10 @@ def get_image_path(args, **override_kwargs):
     out_folder = args.o
     os.makedirs(out_folder, exist_ok=True)
 
-    out_fname = f"randomSeed_{override_kwargs.get('seed', None) or args.seed}"
-    out_fname += f"_computeUnit_{override_kwargs.get('compute_unit', None) or args.compute_unit}"
-    out_fname += f"_modelVersion_{override_kwargs.get('model_version', None) or args.model_version.replace('/', '_')}"
+    # out_fname = f"randomSeed_{override_kwargs.get('seed', None) or args.seed}"
+    # out_fname += f"_computeUnit_{override_kwargs.get('compute_unit', None) or args.compute_unit}"
+    # out_fname += f"_modelVersion_{override_kwargs.get('model_version', None) or args.model_version.replace('/', '_')}"
+    out_fname = "dream"
 
     if args.scheduler is not None:
         out_fname += f"_customScheduler_{override_kwargs.get('scheduler', None) or args.scheduler}"
